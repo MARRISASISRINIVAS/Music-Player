@@ -1,3 +1,3 @@
 # Music-Player
 ### 🎧 Live Demo  
-👉 (https://MARRISASISRINIVAS.github.io/music-player/)
+👉 https://marrisasisrinivas.github.io/Music-Player/
