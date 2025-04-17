@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feel Music</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header-title">
+        <div class="logo-container">
+            <i class="fas fa-music music-icon"></i>
+            
+            <span class="title-text">Feel Music</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <div class="user-profile">
+                <div class="profile-icon">S</div>
+                <div class="profile-info">
+                    <h3>SasiSrinivas Marri</h3>
+                    <p>Music Lover ❤️</p>
+                </div>
+            </div>
+            <div class="menu-item" onclick="displaySongs()">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </div>
+            <div class="menu-item" onclick="displayFavorites()">
+                <i class="fas fa-heart"></i>
+                <span>Favorites</span>
+            </div>
+            <div class="menu-item" onclick="displayPlaylists()">
+                <i class="fas fa-list"></i>
+                <span>Playlists</span>
+            </div>
+            <div class="menu-item" onclick="displayRecentSongs()">
+                <i class="fas fa-history"></i>
+                <span>Recent</span>
+            </div>
+            <div class="menu-item" onclick="showSettings()">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </div>
+        </div>
+
+        <div class="top-bar">
+            <button class="menu-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search songs, playlists, and artists">
+                <i class="fas fa-microphone mic-icon" id="micIcon" onclick="startVoiceRecognition()"></i>
+            </div>
+        </div>
+
+        <div class="quick-categories">
+            <div class="category-card favorites" onclick="displayFavorites()">
+                <i class="fas fa-heart"></i>
+                <h3>Favorites</h3>
+            </div>
+            <div class="category-card playlists" onclick="displayPlaylists()">
+                <i class="fas fa-list"></i>
+                <h3>Playlists</h3>
+            </div>
+            <div class="category-card recent" onclick="displayRecentSongs()">
+                <i class="fas fa-history"></i>
+                <h3>Recent</h3>
+            </div>
+        </div>
+
+        <div class="navigation-tabs">
+            <button class="tab-btn active" onclick="displaySongs()">All Songs</button>
+            <button class="tab-btn" onclick="displayFavorites()">Favorites</button>
+            <button class="tab-btn" onclick="displayPlaylists()">Playlists</button>
+            <button class="tab-btn" onclick="displayRecentSongs()">Recent</button>
+        </div>
+
+        <div id="songList" class="song-list"></div>
+
+        <div id="player">
+            <div class="circle-container">
+                <div id="albumArt"></div>
+            </div>
+            <h2 id="songTitle"></h2>
+            <div class="lyrics-label">
+                <span>Lyrics</span>
+                <button class="favorite-btn" onclick="toggleFavorite(songs[currentIndex].title)">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <div id="lyrics"></div>
+            <div class="progress-container">
+                <span id="currentTime">0:00</span>
+                <input type="range" id="progressBar" value="0" max="100">
+                <span id="duration">0:00</span>
+            </div>
+            <div class="controls">
+                <button onclick="toggleShuffle()" id="shuffleBtn">
+                    <i class="fas fa-random"></i>
+                </button>
+                <button onclick="previousSong()">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button id="playPauseBtn" onclick="togglePlayPause()">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button onclick="nextSong()">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+                <button onclick="toggleRepeat()" id="repeatBtn">🔁</button>
+            </div>
+            <div class="volume-control">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+                <i class="fas fa-volume-up"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="settings-modal">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <div class="settings-section">
+                <h3>Theme</h3>
+                <div class="setting-item">
+                    <span>Dark Mode</span>
+                    <select id="themeSelect">
+                        <option value="dark">Dark</option>
+                        <option value="light">Light</option>
+                    </select>
+                </div>
+            </div>
+            <button class="close-settings" onclick="closeSettings()">Close</button>
+        </div>
+    </div>
+
+    <div id="notifications"></div>
+
+    <audio id="audioPlayer"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
